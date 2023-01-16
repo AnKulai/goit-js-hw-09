@@ -71,7 +71,7 @@ let addLeadingZero = value => {
   return value < 10 ? `0${value}` : value;
 };
 
-startBtn.addEventListener(click, startTimer);
+startBtn.addEventListener(`click`, startTimer);
 
 // Finish timer
 
