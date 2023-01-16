@@ -57,7 +57,7 @@ function convertMs(ms) {
 // Filling Timer fields
 
 let fillingTimeField = (data, value) => {
-  return (document.querySelector([data-${data}]).textContent =
+  return (document.querySelector(`[data-${data}]`).textContent =
     addLeadingZero(value));
 };
 
