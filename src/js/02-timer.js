@@ -1,8 +1,9 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
-import Notiflix from 'notiflix';
+import Notiflix, { Notify } from 'notiflix';
 
-const startBtn = document.querySelector(`[data-start]`);
+const startBtn = document.querySelector([data-start]);
+let timerId;
 let deadline;
 
 const options = {
@@ -28,13 +29,9 @@ flatpickr('#datetime-picker', options);
 
 function startTimer() {
   startBtnIsBlock(true);
-  setInterval(() => {
+  timerId = setInterval(() => {
     let differenceTime = deadline - Date.now();
-    let timeLeft = convertMs(differenceTime);
-    fillingTimeField(`days`, timeLeft.days);
-    fillingTimeField(`hours`, timeLeft.hours);
-    fillingTimeField(`minutes`, timeLeft.minutes);
-    fillingTimeField(`seconds`, timeLeft.seconds);
+    isFinishCheck(differenceTime);
   }, 1000);
 }
 
@@ -60,21 +57,36 @@ function convertMs(ms) {
 // Filling Timer fields
 
 let fillingTimeField = (data, value) => {
-  return (document.querySelector(`[data-${data}]`).textContent =
+  return (document.querySelector([data-${data}]).textContent =
     addLeadingZero(value));
 };
 
-// Change `Start button` status
+// Change Start button status
 
 let startBtnIsBlock = value => (startBtn.disabled = value);
 
-// Adding `0` before number if this need
+// Adding 0 before number if this need
 
 let addLeadingZero = value => {
-  return value < 10 ? `0${value}` : value;
+  return value < 10 ? 0${value} : value;
 };
 
-startBtn.addEventListener(`click`, startTimer);
+startBtn.addEventListener(click, startTimer);
+
+// Finish timer
+
+function isFinishCheck(time) {
+  if (time >= 0) {
+    let timeLeft = convertMs(time);
+    fillingTimeField(days, timeLeft.days);
+    fillingTimeField(hours, timeLeft.hours);
+    fillingTimeField(minutes, timeLeft.minutes);
+    fillingTimeField(seconds, timeLeft.seconds);
+  } else {
+    Notify.success(Time is over!);
+    return clearInterval(timerId);
+  }
+}
 
 // Main
 
