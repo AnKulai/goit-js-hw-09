@@ -78,10 +78,10 @@ startBtn.addEventListener(`click`, startTimer);
 function isFinishCheck(time) {
   if (time >= 0) {
     let timeLeft = convertMs(time);
-    fillingTimeField(days, timeLeft.days);
-    fillingTimeField(hours, timeLeft.hours);
-    fillingTimeField(minutes, timeLeft.minutes);
-    fillingTimeField(seconds, timeLeft.seconds);
+    fillingTimeField(`days`, timeLeft.days);
+    fillingTimeField(`hours`, timeLeft.hours);
+    fillingTimeField(`minutes`, timeLeft.minutes);
+    fillingTimeField(`seconds`, timeLeft.seconds);
   } else {
     Notify.success(`Time is over!`);
     return clearInterval(timerId);
