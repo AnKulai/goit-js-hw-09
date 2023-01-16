@@ -61,11 +61,11 @@ let fillingTimeField = (data, value) => {
     addLeadingZero(value));
 };
 
-// Change Start button status
+// Change `Start button` status
 
 let startBtnIsBlock = value => (startBtn.disabled = value);
 
-// Adding 0 before number if this need
+// Adding `0` before number if this need
 
 let addLeadingZero = value => {
   return value < 10 ? `0${value}` : value;
