@@ -68,7 +68,7 @@ let startBtnIsBlock = value => (startBtn.disabled = value);
 // Adding 0 before number if this need
 
 let addLeadingZero = value => {
-  return value < 10 ? 0${value} : value;
+  return value < 10 ? `0${value}` : value;
 };
 
 startBtn.addEventListener(click, startTimer);
