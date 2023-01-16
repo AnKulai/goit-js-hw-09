@@ -83,7 +83,7 @@ function isFinishCheck(time) {
     fillingTimeField(minutes, timeLeft.minutes);
     fillingTimeField(seconds, timeLeft.seconds);
   } else {
-    Notify.success(Time is over!);
+    Notify.success(`Time is over!`);
     return clearInterval(timerId);
   }
 }
